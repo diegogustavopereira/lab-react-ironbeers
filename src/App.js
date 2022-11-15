@@ -1,38 +1,26 @@
 import "./App.css";
 import BeersList from "./components/BeersList/BeersList";
 
-import axios from "axios";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import InitialPage from "./components/InitialPage/InitialPage";
 import { Route, Routes } from "react-router-dom";
 import RandomBeer from "./components/RandomBeer/RandomBeer";
 import NewBeer from "./components/NewBeer/NewBeer";
+import BeerDetails from "./components/BeerDetails/BeerDetails";
 
 function App() {
 
-  const [beers, setBeers] = useState([]);
-  const [fetching, setFetching] = useState(true);
-
-  useEffect(() => {
-    axios
-    .get("https://ih-beers-api2.herokuapp.com/beers")
-    .then((response) => {
-      setBeers(response.data);
-      console.log(response.data);
-      setFetching(false);
-    })
-    .catch((error) => console.log(error));
-  },
-  []);
+  const apiURL = "https://ih-beers-api2.herokuapp.com/beers"
 
   return (
     <div className="App">
       <Routes>
-        <Route path="/" element={<InitialPage />} />
-        <Route path="/BeersList" element={<BeersList beers={beers} setBeers={setBeers} />} />
-        <Route path="/RandomBeer" element={<RandomBeer />} />
-        <Route path="/NewBeer" element={<NewBeer />} />
+        <Route path="/" element={<InitialPage apiURL={apiURL} />} />
+        <Route path="/BeersList" element={<BeersList apiURL={apiURL} />} />
+        <Route path="beer/:id" element={ <BeerDetails apiURL={ apiURL } />} />
+        <Route path="/RandomBeer" element={<RandomBeer apiURL={apiURL}/>} />
+        <Route path="/NewBeer" element={<NewBeer apiURL={ apiURL }/>} />
       </Routes>
     </div>
   );

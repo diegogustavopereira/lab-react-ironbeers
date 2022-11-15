@@ -1,18 +1,30 @@
+import axios from "axios";
+import { useEffect, useState } from "react";
+import RenderBeerDetailsCard from "../BeerDetails/RenderBeerDetailsCard";
 import HeaderBar from "../HeaderBar/HeaderBar";
 
+function RandomBeer({ apiURL }) {
+  const [beer, setBeer] = useState([]);
+  //estabelece que a variável id é igual ao parâmetro da rota dinâmica que,
+  //no caso, foi indicado como o id do item do banco de dados
 
-function RandomBeer () {
+  //busca os dados da API, permitindo a sua exibição na lista
+  useEffect(() => {
+    axios
+      .get(`${apiURL}/random`)
+      .then((response) => {
+        setBeer(response.data);
+      })
+      .catch((error) => console.log(error));
+  }, []);
 
-    return (
-        <div>
-        <HeaderBar />
-        <h1>teste</h1>
+  const beerId = beer._id;
 
-
-        </div>
-              
-    );
-
+  return (
+    <div>
+      {<RenderBeerDetailsCard apiURL={apiURL} beerId={beerId} />}
+    </div>
+  );
 }
 
-export default RandomBeer
+export default RandomBeer;

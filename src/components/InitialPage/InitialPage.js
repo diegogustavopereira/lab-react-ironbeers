@@ -8,10 +8,25 @@ import Card from "react-bootstrap/Card";
 import beersImg from "../../assets/beers.png";
 import randomBeers from "../../assets/random-beer.png";
 import newBeer from "../../assets/new-beer.png";
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
 
-function InitialPage() {
+function InitialPage({apiURL}) {
+
+  const [beer, setBeer] = useState([]);
     
+  //busca os dados da API, permitindo a sua exibição na lista
+  useEffect(() => {
+    axios
+      .get(`${apiURL}/random`)
+      .then((response) => {
+        setBeer(response.data);
+      })
+      .catch((error) => console.log(error));
+  }, []);
+
+  const beerId = beer._id;
 
   return (
     <div>
@@ -30,7 +45,7 @@ function InitialPage() {
         </Card>
 
         <Card style={{ width: "18rem" }} className="RandomBeer">
-          <Link to="/RandomBeer">
+          <Link className="nav-link" to={`/beer/${beerId}`}>
             <img
               src={randomBeers}
               alt="randomBeer"
