@@ -3,7 +3,6 @@ import Card from "react-bootstrap/Card";
 import { Container, Col, Row } from "react-bootstrap";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import HeaderBar from "../HeaderBar/HeaderBar";
 
 function RenderBeerDetailsCard({ apiURL, beerId }) {
   //estabelece o estado
@@ -34,12 +33,11 @@ function RenderBeerDetailsCard({ apiURL, beerId }) {
         })
         .catch((error) => console.log(error));
     }
-  }, []);
+  }, [id]);
 
   return (
     <Container>
-      <HeaderBar />
-
+      
       <Card
         key={beer._id}
         style={{ width: "22rem", padding: "10px", margin: "10px" }}

@@ -1,8 +1,6 @@
 import Card from "react-bootstrap/Card";
 import { Container, Col, Row } from "react-bootstrap";
 import { Link } from "react-router-dom"
-
-import HeaderBar from "../HeaderBar/HeaderBar";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
@@ -46,8 +44,7 @@ function BeersList({ apiURL }) {
 
   return (
     <Container>
-      <HeaderBar />
-      {ListBeers}
+       {ListBeers}
     </Container>
   );
 }

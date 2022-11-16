@@ -1,7 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import RenderBeerDetailsCard from "../BeerDetails/RenderBeerDetailsCard";
-import HeaderBar from "../HeaderBar/HeaderBar";
 
 function RandomBeer({ apiURL }) {
   const [beer, setBeer] = useState([]);

@@ -31,8 +31,9 @@ function InitialPage({apiURL}) {
   return (
     <div>
       <Container className='BeerCard' >
+        
         <Card style={{ width: "18rem"}} className="AllBeers">
-          <Link to="/BeersList">
+          <Link className="nav-link" to="/BeersList">
             <img src={beersImg} alt="Beers" style={{ width: "18rem" }} />
           </Link>
           <Card.Body>
@@ -63,7 +64,7 @@ function InitialPage({apiURL}) {
         </Card>
 
         <Card style={{ width: "18rem" }} className="NewBeer">
-          <Link to="/NewBeer">
+        <Link className="nav-link" to="/NewBeer">
             <img src={newBeer} alt="newBeer" style={{ width: "18rem" }} />
           </Link>
           <Card.Body>
